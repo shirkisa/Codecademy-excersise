@@ -1,3 +1,9 @@
+"""
+Code is not COMPLETE!!!!
+"""
+
+
+
 # These are the emails you will be censoring. The open() function is opening the text file that the emails are contained in and the .read() method is allowing us to save their contexts to the following variables:
 email_one = open("email_one.txt", "r").read()
 email_two = open("email_two.txt", "r").read()
@@ -11,6 +17,9 @@ def censor_word(email):
 
 proprietary_terms = ["she", "personality matrix", "sense of self", "self-preservation", "learning algorithm", "her", "herself"]
 
+negative_words = ["concerned", "concerning" "behind",  "dangerous", "alarming", "alarmed", "out of control", "help", "unhappy", "bad", "upset", "awful", "broken", "damage", "damaging", "dismal", "distressed", "distressing", "horrible", "horribly", "Horribly", "questionable"]
+
+# censoring specific words from a list
 def censor_word_list(email):
   censored_email = email
   for word in proprietary_terms:
@@ -20,8 +29,7 @@ def censor_word_list(email):
       censored_email = censored_email.replace(word, "-"*len(word))
   return censored_email
 
-negative_words = ["concerned", "concerning" "behind",  "dangerous", "alarming", "alarmed", "out of control", "help", "unhappy", "bad", "upset", "awful", "broken", "damage", "damaging", "dismal", "distressed", "distressing", "horrible", "horribly", "Horribly", "questionable"]
-
+#censoring from teo lists, negative list is censored after at least two words apear in text
 def censor_negative(email):
   not_negative_email = censor_word_list(email) 
   negative_count = 0
@@ -34,6 +42,7 @@ def censor_negative(email):
         not_negative_email = not_negative_email.replace(n_word, "-"*len(n_word))    
   return not_negative_email
 
+#previous two functions + censoring the word that comes before and after
 def censor_alot(email):
   censored_email = censor_negative(email)
   split_email = censored_email.split()
